@@ -1,1019 +1,703 @@
 ---
-// ValueMDelivery.com — Landing Page
-// Calendly: https://calendly.com/conev/value-m-client-facing-discovery
+// Value M Landing Page — Migrated from vanilla HTML to Astro
+// Calendly: https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <title>ValueM Delivery | Fix Your Client-Facing</title>
-        <meta name="description" content="Good product. Great team. Losing clients. You are missing one thing. It is fixable in 30 days." />
-        <meta name="theme-color" content="#ffffff" />
-        <link rel="canonical" href="https://valuemdelivery.com/" />
-
-        <!-- Open Graph -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://valuemdelivery.com/" />
-        <meta property="og:title" content="ValueM Delivery | Fix Your Client-Facing" />
-        <meta property="og:description" content="Good product. Great team. Losing clients. Book a free 30-minute call." />
-
-        <!-- Twitter / X -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="ValueM Delivery | Fix Your Client-Facing" />
-        <meta name="twitter:description" content="Good product. Great team. Losing clients. Book a free 30-minute call." />
-
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-        <style>
-/* ===== 1. TOKENS ===== */
-:root {
-    color-scheme: light;
-
-    --color-brand:             #4f46e5;
-    --color-brand-hover:       #4338ca;
-    --color-brand-light:       #818cf8;
-    --color-brand-glow-soft:   rgba(79, 70, 229, 0.35);
-    --color-brand-glow-faint:  rgba(79, 70, 229, 0.04);
-    --color-brand-glow-pulse:  rgba(79, 70, 229, 0.3);
-    --color-brand-light-alpha: rgba(129, 140, 248, 0.4);
-    --color-brand-light-soft:  rgba(129, 140, 248, 0.2);
-    --color-brand-light-hover: #c7d2fe;
-
-    --color-surface-dark:    #0f1117;
-    --color-card-dark:       #1a1f2e;
-    --color-bg-primary:      #ffffff;
-    --color-bg-secondary:    #f8fafc;
-    --color-bg-nav:          rgba(255, 255, 255, 0.95);
-    --color-bg-testimonials: #e8edf5;
-    --color-bg-avatar:       #e2e8f0;
-    --color-bg-dot:          #cbd5e1;
-
-    --color-text-primary:    #0b0b0f;
-    --color-text-muted:      #6c727f;
-    --color-text-dark-muted: #94a3b8;
-    --color-text-on-dark:    #ffffff;
-    --color-text-subtle:     #4b5563;
-    --color-text-hero:       #3b4458;
-    --color-text-muted-light:#5b677b;
-    --color-text-section:    #5b677b;
-    --color-text-footer:     #7e8a98;
-    --color-text-footer-logo:#eef2ff;
-    --color-avatar-initials: #1e293b;
-
-    --color-border:            #eceef2;
-    --color-border-dark:       rgba(255, 255, 255, 0.06);
-    --color-border-dark-hover: rgba(255, 255, 255, 0.12);
-    --color-border-light:      #e2e8f0;
-    --color-video-border:      #eef2f6;
-
-    --color-shadow-nav:    rgba(0, 0, 0, 0.12);
-    --color-shadow-sm:     rgba(0, 0, 0, 0.02);
-    --color-shadow-avatar: rgba(0, 0, 0, 0.05);
-
-    --radius-pill:      40px;
-    --radius-card:      16px;
-    --radius-card-sm:   14px;
-    --radius-card-dark: 14px;
-    --radius-card-pain: 20px;
-
-    --transition-base: 0.2s ease;
-    --duration-slow:   0.4s;
-}
-
-/* ===== 2. RESET ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-/* ===== 3. BODY ===== */
-body {
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-    background: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-    line-height: 1.4;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ===== 4. CONTAINER ===== */
-.container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ===== 5. NAVIGATION ===== */
-.nav-section {
-    background: var(--color-bg-nav);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--color-shadow-nav);
-    position: sticky;
-    top: 0;
-    z-index: 60;
-}
-
-.nav { padding: 16px 0; }
-
-.nav-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: -0.015em;
-    text-decoration: none;
-    color: var(--color-text-primary);
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-}
-
-.nav-cta-text {
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--color-text-on-dark);
-    transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--color-text-primary);
-    border: 1.5px solid transparent;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-}
-
-.nav-cta-text:hover {
-    background: transparent;
-    color: var(--color-text-subtle);
-    border-color: var(--color-text-subtle);
-    transform: scale(1.03);
-}
-
-/* ===== 6. HERO ===== */
-.hero-section {
-    background: var(--color-bg-primary);
-    padding: 100px 0 96px;
-    text-align: center;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.eyebrow {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    color: var(--color-brand);
-    margin-bottom: 20px;
-    display: inline-block;
-}
-
-.hero-title {
-    font-size: 36px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    color: var(--color-text-primary);
-    max-width: 960px;
-    margin: 0 auto 24px auto;
-}
-
-.hero-supporting-text {
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--color-text-hero);
-    max-width: 840px;
-    margin: 0 auto 40px auto;
-    padding: 0 4px;
-}
-
-.hero-cta-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.btn-primary {
-    background: var(--color-brand);
-    color: white;
-    padding: 14px 32px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    box-shadow: 0 0 0 8px var(--color-brand-glow-pulse);
-    opacity: 0;
-    animation: pulse-glow 2s infinite;
-    pointer-events: none;
-}
-
-.btn-primary:hover {
-    background: var(--color-brand-hover);
-    transform: scale(1.03);
-    box-shadow: 0 8px 24px var(--color-brand-glow-soft);
-}
-
-@keyframes pulse-glow {
-    0%, 100% { opacity: 0; transform: scale(1); }
-    50%       { opacity: 1; transform: scale(1.15); }
-}
-
-.ghost-link {
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--color-text-subtle);
-    transition: border-color var(--transition-base), color var(--transition-base), transform var(--transition-base), background var(--transition-base);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: transparent;
-    border: 1.5px solid var(--color-border-light);
-    cursor: pointer;
-    padding: 14px 32px;
-    border-radius: var(--radius-pill);
-}
-
-.ghost-link:hover {
-    border-color: var(--color-brand);
-    color: var(--color-brand);
-    transform: scale(1.03);
-    background: var(--color-brand-glow-faint);
-}
-
-.hero-note {
-    margin-top: 20px;
-    font-size: 13px;
-    color: var(--color-text-muted);
-    text-align: center;
-}
-
-/* ===== 7. PAIN ===== */
-.pain-section {
-    background: var(--color-surface-dark);
-    padding: 96px 0;
-    border-bottom: 1px solid var(--color-border-dark);
-}
-
-.pain-section .section-header h2 { color: var(--color-text-on-dark); }
-.pain-section .section-header p  { color: var(--color-text-dark-muted); }
-
-.section-header {
-    text-align: center;
-    margin-bottom: 64px;
-}
-
-.section-header h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    max-width: 960px;
-    margin: 0 auto 16px;
-}
-
-.section-header p {
-    font-size: 16px;
-    color: var(--color-text-section);
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 0 12px;
-}
-
-.pain-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-.pain-card {
-    background: var(--color-card-dark);
-    border-radius: var(--radius-card-pain);
-    padding: 40px 32px;
-    border: 1px solid var(--color-border-dark);
-    transition: border-color var(--transition-base);
-    text-align: left;
-}
-
-.pain-card:hover { border-color: var(--color-border-dark-hover); }
-
-.pain-number {
-    font-size: 48px;
-    font-weight: 800;
-    color: var(--color-brand-light);
-    line-height: 1.1;
-    margin-bottom: 16px;
-}
-
-.pain-label {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-text-on-dark);
-    margin-bottom: 14px;
-}
-
-.pain-desc {
-    font-size: 16px;
-    color: var(--color-text-dark-muted);
-    line-height: 1.4;
-}
-
-/* ===== 8. VIDEO ===== */
-.video-section {
-    background: var(--color-bg-primary);
-    padding: 96px 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.video-wrapper {
-    max-width: 100%;
-    margin: 0 auto;
-    border-radius: var(--radius-card);
-    background: var(--color-surface-dark);
-    border: 1px solid var(--color-video-border);
-    box-shadow: 0 1px 2px var(--color-shadow-sm);
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 16 / 9;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: none;
-}
-
-.video-facade {
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    transition: opacity var(--duration-slow) ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-surface-dark);
-}
-
-.video-facade.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.video-play-btn {
-    width: 72px;
-    height: 72px;
-    background: var(--color-brand);
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background var(--transition-base), transform var(--transition-base);
-}
-
-.video-play-btn:hover {
-    background: var(--color-brand-hover);
-    transform: scale(1.08);
-}
-
-.video-play-btn::after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 0 10px 18px;
-    border-color: transparent transparent transparent #ffffff;
-    margin-left: 4px;
-}
-
-.video-caption {
-    text-align: center;
-    margin: 28px auto 0;
-    font-size: 13px;
-    color: var(--color-text-muted);
-    max-width: 960px;
-}
-
-/* ===== 9. TESTIMONIALS ===== */
-.social-proof-section {
-    background: var(--color-bg-testimonials);
-    padding: 96px 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.testimonial-container {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-}
-
-.testimonial-slide {
-    display: none;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.testimonial-slide.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-}
-
-.testimonial-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.testimonial-right {
-    width: 100%;
-    text-align: center;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.testimonial-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--color-bg-avatar);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 2px solid #ffffff;
-    box-shadow: 0 2px 6px var(--color-shadow-avatar);
-}
-
-.testimonial-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.avatar-initials {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-avatar-initials);
-}
-
-.testimonial-stars {
-    color: var(--color-brand);
-    font-size: 18px;
-    margin-bottom: 16px;
-}
-
-.testimonial-quote {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--color-text-primary);
-    margin-bottom: 32px;
-}
-
-.testimonial-quote::before {
-    content: "\275D";
-    font-size: 1.4em;
-    color: var(--color-brand);
-    margin-right: 4px;
-}
-
-.testimonial-quote::after {
-    content: "\275E";
-    font-size: 1.4em;
-    color: var(--color-brand);
-    margin-left: 4px;
-    vertical-align: top;
-}
-
-.testimonial-left cite { display: block; text-align: center; }
-
-.testimonial-author {
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 4px;
-    font-size: 16px;
-}
-
-.testimonial-title {
-    font-size: 13px;
-    color: var(--color-text-muted);
-}
-
-.testimonial-dots {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    margin-top: 48px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    background: var(--color-bg-dot);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background var(--transition-base), width var(--transition-base), border-radius var(--transition-base);
-    border: none;
-    padding: 8px;
-    margin: -8px;
-}
-
-.dot.active {
-    background: var(--color-brand);
-    width: 24px;
-    border-radius: calc(var(--radius-pill) * 0.3);
-}
-
-.dot:hover { background: var(--color-brand); }
-
-/* ===== 10. FOOTER ===== */
-.footer-section {
-    background: var(--color-surface-dark);
-    color: var(--color-bg-avatar);
-    padding: 16px 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-}
-
-.footer-logo {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-text-footer-logo);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.footer-copyright {
-    font-size: 13px;
-    color: var(--color-text-footer);
-}
-
-/* ===== 11. REVEAL ANIMATIONS ===== */
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-
-/* ===== 12. FOCUS VISIBLE ===== */
-:focus-visible {
-    outline: 2px solid var(--color-brand);
-    outline-offset: 3px;
-    border-radius: 4px;
-}
-
-.btn-primary:focus-visible,
-.nav-cta-text:focus-visible {
-    outline: 2px solid var(--color-text-on-dark);
-    outline-offset: 3px;
-}
-
-.dot:focus-visible {
-    outline: 2px solid var(--color-brand);
-    outline-offset: 3px;
-}
-
-/* ===== 13. REDUCED MOTION ===== */
-@media (prefers-reduced-motion: reduce) {
-    .btn-primary { animation: none; }
-    .testimonial-slide { animation: none; }
-    .reveal { opacity: 1; transform: none; transition: none; }
-    * { transition-duration: 0.01ms !important; }
-}
-
-/* ===== 14. RESPONSIVE ===== */
-@media (min-width: 480px) {
-    .testimonial-quote  { font-size: 20px; }
-    .testimonial-avatar { width: 80px; height: 80px; }
-    .avatar-initials    { font-size: 22px; }
-}
-
-@media (min-width: 640px) {
-    .pain-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .pain-section  { padding: 120px 0; }
-    .video-section { padding: 120px 0; }
-    .social-proof-section { padding: 120px 0; }
-    .nav-cta-text  { font-size: 15px; }
-    .nav           { padding: 20px 0; }
-    .logo          { font-size: 16px; }
-    .hero-section  { padding: 120px 0; }
-    .hero-title    { font-size: 50px; }
-    .hero-supporting-text { font-size: 18px; }
-    .eyebrow       { font-size: 13px; }
-    .btn-primary   { padding: 16px 40px; font-size: 16px; }
-    .ghost-link    { padding: 16px 40px; font-size: 16px; }
-    .pain-number   { font-size: 60px; }
-    .pain-label    { font-size: 20px; }
-    .pain-desc     { font-size: 17px; }
-    .section-header p  { font-size: 18px; }
-    .section-header h2 { font-size: 36px; }
-    .testimonial-quote  { font-size: 22px; }
-    .testimonial-avatar { width: 88px; height: 88px; }
-    .avatar-initials    { font-size: 26px; }
-    .testimonial-slide.active {
-        flex-direction: row;
-        align-items: center;
-        gap: 48px;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value M | Client-Facing Delivery for CEOs and Founders</title>
+    <meta name="description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
+    <meta property="og:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
+    <meta property="og:description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
+    <meta property="og:image" content="https://YOUR_DOMAIN.com/og-image.png">
+    <meta property="og:url" content="https://YOUR_DOMAIN.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
+    <meta name="twitter:description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
+    <meta name="twitter:image" content="https://YOUR_DOMAIN.com/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Value M",
+      "url": "https://YOUR_DOMAIN.com",
+      "logo": "https://YOUR_DOMAIN.com/logo.png",
+      "description": "Value M helps CEOs and founders fix broken client-facing delivery. We provide methodology, frameworks, and coaching to improve client engagement and delivery outcomes.",
+      "sameAs": [
+        "https://linkedin.com/company/value-m",
+        "https://twitter.com/valuem"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "url": "https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05",
+        "contactType": "Sales"
+      }
     }
-    .testimonial-right { flex: 1; text-align: left; }
-    .footer-section { padding: 20px 0; }
-    .footer-copyright { font-size: 14px; }
-    .footer-logo      { font-size: 14px; }
-    .container { padding: 0 24px; }
-}
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Value M: Two minutes. Three problems. One system.",
+      "description": "Watch how companies like yours close the delivery gap for good. Learn the three key problems in client-facing delivery and the system to fix them.",
+      "thumbnailUrl": "https://YOUR_DOMAIN.com/video-thumbnail.jpg",
+      "uploadDate": "2026-05-22",
+      "duration": "PT2M",
+      "contentUrl": "https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU",
+      "embedUrl": "https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-@media (min-width: 768px) {
-    .container { max-width: 960px; padding: 0 24px; }
-    .hero-title { font-size: 58px; }
-    .section-header h2 { font-size: 38px; }
-    .pain-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
-}
+    <style is:global>
+        :root {
+            --color-primary: #001F64;
+            --color-text: #000000;
+            --color-text-light: #444444;
+            --color-text-muted: #666666;
+            --color-bg: #ffffff;
+            --color-bg-alt: #F7F8FA;
+            --color-border: #E5E7EB;
+            --color-bg-dark: #000000;
+            --font-base: 17px;
+            --line-height: 1.7;
+            --line-height-tight: 1.15;
+            --radius: 9999px;
+            --transition: 0.2s ease-out;
+        }
 
-@media (min-width: 1024px) {
-    .container { max-width: 960px; padding: 0 20px; }
-    .nav-cta-text { font-size: 16px; }
-    .hero-section  { padding: 160px 0 140px; }
-    .pain-section  { padding: 160px 0; }
-    .video-section { padding: 160px 0; }
-    .social-proof-section { padding: 160px 0; }
-    .hero-title    { font-size: 65px; }
-    .hero-supporting-text { font-size: 24px; }
-    .eyebrow       { font-size: 14px; }
-    .pain-number   { font-size: 72px; }
-    .pain-label    { font-size: 22px; }
-    .pain-desc     { font-size: 18px; }
-    .section-header p  { font-size: 20px; }
-    .section-header h2 { font-size: 42px; }
-    .footer-section    { padding: 20px 0; }
-    .footer-copyright  { font-size: 15px; }
-    .footer-logo       { font-size: 15px; }
-}
-        </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-size: var(--font-base);
+            font-weight: 400;
+            line-height: var(--line-height);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        section.in-view {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 0;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #001F64;
+        }
+
+        .nav-button {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0;
+            transition: opacity var(--transition);
+        }
+
+        .nav-button:hover {
+            opacity: 0.7;
+        }
+
+        .hero {
+            background-color: var(--color-bg);
+            padding: 64px 0;
+        }
+
+        .pre-heading {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .hero-subheading {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--color-text-light);
+            margin-bottom: 56px;
+            line-height: 1.7;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: fit-content;
+        }
+
+        .primary-button, .secondary-button {
+            padding: 14px 36px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            white-space: nowrap;
+            transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
+        }
+
+        .primary-button {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .primary-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .secondary-button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+        }
+
+        .symptoms {
+            background-color: var(--color-bg-alt);
+            padding: 56px 0;
+        }
+
+        .symptoms h2 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .symptoms-subheading {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--color-text-light);
+            margin-bottom: 56px;
+            line-height: 1.7;
+        }
+
+        .symptoms-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .symptoms-list li {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .symptom-text {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-text);
+        }
+
+        .symptom-text::before {
+            content: '!';
+            color: var(--color-primary);
+            margin-right: 12px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        @media (min-width: 768px) {
+            .symptoms-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+        }
+
+        .video-section {
+            background-color: var(--color-bg);
+            padding: 56px 0;
+        }
+
+        .video-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .video-subheading {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--color-text-light);
+            margin-bottom: 56px;
+            line-height: 1.7;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .video-thumbnail.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 12px 24px rgba(0, 31, 100, 0.25);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 28px solid var(--color-bg);
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            margin-left: 4px;
+        }
+
+        .play-button.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .testimonials {
+            background-color: var(--color-bg-alt);
+            padding: 56px 0;
+        }
+
+        .testimonials h2 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .testimonials-subheading {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--color-text-light);
+            margin-bottom: 56px;
+            line-height: 1.7;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            padding: 40px;
+        }
+
+        .testimonial-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #001F64;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-title {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+        }
+
+        .final-cta {
+            background-color: var(--color-bg);
+            padding: 64px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 32px;
+            color: var(--color-text);
+        }
+
+        .cta-button-large {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+            padding: 14px 48px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .cta-button-large:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+        }
+
+        @media (min-width: 1024px) {
+            .final-cta {
+                padding: 100px 0;
+            }
+
+            .final-cta h2 {
+                font-size: 40px;
+                margin-bottom: 40px;
+            }
+        }
+
+        footer {
+            background-color: var(--color-bg-dark);
+            color: var(--color-bg);
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        footer .logo {
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        @media (min-width: 768px) {
+            .button-group {
+                flex-direction: row;
+                gap: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 120px 0;
+            }
+
+            .hero h1 {
+                font-size: 64px;
+            }
+
+            .symptoms {
+                padding: 120px 0;
+            }
+
+            .symptoms h2 {
+                font-size: 46px;
+            }
+
+            .video-section {
+                padding: 120px 0;
+            }
+
+            .video-section h2 {
+                font-size: 40px;
+            }
+
+            .testimonials {
+                padding: 120px 0;
+            }
+
+            .testimonials h2 {
+                font-size: 40px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
     </head>
-    <body>
+<body>
+    <nav id="nav">
+        <div class="nav-content">
+            <div class="logo">Value M</div>
+            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span>&rarr;</span></a>
+        </div>
+    </nav>
 
-        <!-- NAVIGATION -->
-        <nav class="nav-section" aria-label="Main navigation">
+    <main>
+        <section class="hero">
             <div class="container">
-                <div class="nav">
-                    <div class="nav-inner">
-                        <a href="/" class="logo">
-                            <img src="/logo2.svg" alt="ValueM Delivery" height="28" style="width:auto;display:block;">
-                        </a>
-                        <a href="https://calendly.com/conev/value-m-client-facing-discovery" target="_blank" class="nav-cta-text">
-                            Book a Call<span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- HERO -->
-        <section class="hero-section" aria-labelledby="hero-heading">
-            <div class="container">
-                <p class="eyebrow">Client Delivery for Growing Businesses</p>
-                <h1 id="hero-heading" class="hero-title">
-                    Good product. Great team.<br>Losing clients.
-                </h1>
-                <p class="hero-supporting-text">
-                    You are not doing anything wrong.<br>
-                    You are missing one thing.<br>
-                    It is fixable in 30 days.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="https://calendly.com/conev/value-m-client-facing-discovery" target="_blank" class="btn-primary">
-                        Book a Free Call<span aria-hidden="true">→</span>
-                    </a>
-                    <button type="button" class="ghost-link" id="seeItInActionBtn">
-                        Watch the 2-Minute Fix
-                    </button>
-                </div>
-                <p class="hero-note">Free 30-minute discovery call. No obligation.</p>
-            </div>
-        </section>
-
-        <!-- PAIN AMPLIFICATION -->
-        <section class="pain-section" aria-labelledby="pain-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="pain-heading">It is not your product. It is your page.</h2>
-                    <p>Most digital product sellers blame their offer when their page is the real problem. Here is what a bad page is actually costing you.</p>
-                </div>
-                <div class="pain-grid">
-                    <div class="pain-card reveal">
-                        <div class="pain-number">119X</div>
-                        <h3 class="pain-label">Slow</h3>
-                        <p class="pain-desc">The average landing page weighs 2.86MB. This template is 24kb. That is 119 times lighter. Every extra kilobyte costs you Google rankings, page speed, and the split second patience of a buyer who almost clicked.</p>
-                    </div>
-                    <div class="pain-card reveal reveal-delay-1">
-                        <div class="pain-number">$2.5K</div>
-                        <h3 class="pain-label">Expensive</h3>
-                        <p class="pain-desc">At $197 a month that is what you spend on a funnel builder in a year. Not on ads. Not on your product. On a subscription to someone else's platform. A platform you cannot take with you when you leave.</p>
-                    </div>
-                    <div class="pain-card reveal reveal-delay-2">
-                        <div class="pain-number">7s</div>
-                        <h3 class="pain-label">Ugly</h3>
-                        <p class="pain-desc">Research shows visitors form an opinion of your page in under seven seconds. A slow, cluttered, templated page that looks like every other funnel from 2019 is making that impression right now.</p>
-                    </div>
+                <p class="pre-heading">For CEOs and Founders</p>
+                <h1>Weak client-facing delivery kills your profit</h1>
+                <p class="hero-subheading">Your clients experience your people first. Your product is great, how you deliver it is not.</p>
+                <div class="button-group">
+                    <a href="#video-section" class="primary-button">Fix these 3 first</a>
+                    <a href="#symptoms-section" class="secondary-button">Explore</a>
                 </div>
             </div>
         </section>
 
-        <!-- VIDEO -->
-        <section class="video-section" id="video-block" aria-labelledby="video-heading">
+        <section id="symptoms-section" class="symptoms">
             <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="video-heading">See the fix in 2 minutes.</h2>
-                    <p>Find out exactly what is missing in your client-facing delivery — and how to close the gap in 30 days.</p>
-                </div>
-                <div class="video-wrapper reveal">
-                    <iframe
-                        id="videoPlayer"
-                        src="https://embed.voomly.com/embed/assets/embed.html?videoId=DU8OyhdE2nk-YiwqAHQdj5mDeyOLSGteBjVgxtdZQZqqO3g8d&videoRatio=1.777778&type=v&skinColor=rgba(0%2C171%2C231%2C1)"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
-                        title="ValueM Delivery — the 2-minute fix"
-                        style="display:none"
-                    ></iframe>
-                    <div class="video-facade" id="videoFacade">
-                        <img
-                            src="/video-thumbnail.webp"
-                            alt="Watch ValueM Delivery demo"
-                            width="1920"
-                            height="1080"
-                            class="video-thumbnail"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <button type="button" class="video-play-btn" aria-label="Play video"></button>
-                    </div>
-                </div>
-                <p class="video-caption reveal">2 minutes &middot; No sign-up &middot; Free</p>
+                <h2>Broken delivery costs more than you think</h2>
+                <p class="symptoms-subheading">The revenue hit is visible. The reputation damage is not. By the time you see it, the client has already decided to leave.</p>
+                <ul class="symptoms-list">
+                    <li>
+                        <div class="symptom-text">Your team says YES to anything</div>
+                    </li>
+                    <li>
+                        <div class="symptom-text">You are pulled into escalations</div>
+                    </li>
+                    <li>
+                        <div class="symptom-text">You keep hiring, but speed goes down</div>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <!-- TESTIMONIALS -->
-        <section class="social-proof-section" aria-labelledby="testimonials-heading">
+        <section id="video-section" class="video-section">
             <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="testimonials-heading">Do not take our word for it.</h2>
+                <h2>Two minutes &middot; Three problems &middot; One system</h2>
+                <p class="video-subheading">Watch how companies like yours close the delivery gap for good.</p>
+                <div class="video-wrapper" id="video-container">
+                    <img src="https://YOUR_DOMAIN.com/video-thumbnail.jpg" alt="Value M Client Delivery System Video Thumbnail" class="video-thumbnail">
+                    <button class="play-button" aria-label="Play video"></button>
+                    <iframe id="voomly-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Value M Client Delivery System Video" style="display: none;"></iframe>
                 </div>
-                <div class="testimonial-container" id="testimonialContainer" aria-live="polite">
-
-                    <div class="testimonial-slide reveal active">
-                        <div class="testimonial-left">
-                            <div class="testimonial-avatar">
-                                <span class="avatar-initials">SM</span>
-                            </div>
-                            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-                            <cite>
-                                <div class="testimonial-author">Sarah M.</div>
-                                <div class="testimonial-title">Digital Course Creator</div>
-                            </cite>
-                        </div>
-                        <div class="testimonial-right">
-                            <p class="testimonial-quote">Honestly I was about to just give up and hire someone. Everything I tried was either way over my head or looked terrible. This just worked. Had my page up in under an hour and it actually looks good. Like really good.</p>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-slide reveal">
-                        <div class="testimonial-left">
-                            <div class="testimonial-avatar">
-                                <span class="avatar-initials">JK</span>
-                            </div>
-                            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-                            <cite>
-                                <div class="testimonial-author">James K.</div>
-                                <div class="testimonial-title">Notion Template Seller</div>
-                            </cite>
-                        </div>
-                        <div class="testimonial-right">
-                            <p class="testimonial-quote">I am not a developer. I can just about edit text in a file. Swapped the logo, changed the copy, dropped in my video link and that was it. Did not expect it to be that fast.</p>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-slide reveal">
-                        <div class="testimonial-left">
-                            <div class="testimonial-avatar">
-                                <span class="avatar-initials">MR</span>
-                            </div>
-                            <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-                            <cite>
-                                <div class="testimonial-author">Mia R.</div>
-                                <div class="testimonial-title">Freelance Designer</div>
-                            </cite>
-                        </div>
-                        <div class="testimonial-right">
-                            <p class="testimonial-quote">I have been selling design assets for three years and my own page was embarrassing. Kept putting it off because nothing felt right. Found this, bought it for basically nothing, and finally have a page I actually send people to without cringing.</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="testimonial-dots" id="testimonialDots"></div>
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="footer-section" id="footer-area">
+        <section class="testimonials">
             <div class="container">
-                <div class="footer-inner">
-                    <a href="/" class="footer-logo">
-                        <img src="/logo.svg" alt="ValueM" width="24" height="24" style="display:block;">
-                    </a>
-                    <div class="footer-copyright">
-                        &copy; <span id="footer-year"></span> Value M&trade; &nbsp;&middot;&nbsp; Sofia, Bulgaria
+                <h2>Proven across industries</h2>
+                <p class="testimonials-subheading">Different sectors. Different sizes. The same fix.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-label">Fintech</p>
+                        <p class="testimonial-quote">Designed a requirements documentation and scope control framework. Implementation time was reduced from eight months to six across all subsequent client engagements.</p>
+                        <p class="testimonial-name">Aleksandar Alexiev</p>
+                        <p class="testimonial-title">Co-Founder, Finrelay</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-label">iGaming</p>
+                        <p class="testimonial-quote">Designed a repeatable client engagement and onboarding framework for a heavily customised B2B Crypto igaming platform. First structured onboarding reduced setup time by three weeks.</p>
+                        <p class="testimonial-name">Tobias Fogelberg</p>
+                        <p class="testimonial-title">COO, Cubeia Sweden AB</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-label">Property Management</p>
+                        <p class="testimonial-quote">Full-day workshop rebuilding the client-facing methodology for account managers managing complex long-term relationships in the German property market.</p>
+                        <p class="testimonial-name">Sergey Koynov</p>
+                        <p class="testimonial-title">Chief Executive Officer, Intelliway Services</p>
                     </div>
                 </div>
             </div>
-        </footer>
+        </section>
+    </main>
 
-        <script>
-(function () {
-    // Footer year
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to fix your delivery?</h2>
+            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="cta-button-large">Book your discovery call</a>
+        </div>
+    </section>
 
-    // Smooth scroll helper
-    function scrollTo(el, offset) {
-        if (!el) return;
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top: top - offset, behavior: 'smooth' });
-    }
+    <footer>
+        <p class="copyright">&copy; 2026 Value M&trade;</p>
+    </footer>
 
-    // Reveal animations
-    const revealEls = document.querySelectorAll('.reveal');
-    if (revealEls.length > 0) {
-        const revealObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-        revealEls.forEach(function (el) { revealObserver.observe(el); });
-    }
-
-    // Video facade
-    const VIDEO_ID = 'YOUR_VIDEO_ID';
-    const facade   = document.getElementById('videoFacade');
-    const player   = document.getElementById('videoPlayer');
-
-    function playVideo() {
-        if (!facade || !player) return;
-        player.src = 'https://www.youtube.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0';
-        player.style.display = 'block';
-        facade.classList.add('hidden');
-    }
-
-    if (facade) facade.addEventListener('click', playVideo);
-
-    // "Watch" ghost button scrolls to video then plays
-    const seeItBtn    = document.getElementById('seeItInActionBtn');
-    const videoBlock  = document.getElementById('video-block');
-    if (seeItBtn && videoBlock) {
-        seeItBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            scrollTo(videoBlock, 48);
-            setTimeout(playVideo, 800);
         });
-    }
 
-    // Nav / primary CTA scroll to footer
-    const footerElem = document.getElementById('footer-area');
-    document.querySelectorAll('.nav-cta-text, .btn-primary').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            if (btn.tagName === 'A' && btn.getAttribute('href').startsWith('http')) return;
-            e.preventDefault();
-            scrollTo(footerElem, 32);
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
-    });
 
-    // Hash scroll on load
-    if (window.location.hash === '#video-block') {
-        setTimeout(function () { scrollTo(videoBlock, 48); }, 100);
-    }
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-    // Testimonial slider
-    const slides        = document.querySelectorAll('.testimonial-slide');
-    const dotsContainer = document.getElementById('testimonialDots');
-    let currentIndex = 0;
-    let intervalId   = null;
-
-    function createDots() {
-        if (!dotsContainer) return;
-        dotsContainer.innerHTML = '';
-        slides.forEach(function (_, idx) {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'dot' + (idx === currentIndex ? ' active' : '');
-            dot.setAttribute('aria-label', 'Testimonial ' + (idx + 1));
-            dot.addEventListener('click', function () {
-                stopAuto();
-                showSlide(idx);
-                startAuto();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
             });
-            dotsContainer.appendChild(dot);
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
-    }
 
-    function showSlide(index) {
-        if (index < 0) index = 0;
-        if (index >= slides.length) index = 0;
-        slides.forEach(function (s, i) { s.classList.toggle('active', i === index); });
-        document.querySelectorAll('.dot').forEach(function (d, i) { d.classList.toggle('active', i === index); });
-        currentIndex = index;
-    }
+        const videoContainer = document.getElementById('video-container');
+        const playButton = document.querySelector('.play-button');
+        const videoThumbnail = document.querySelector('.video-thumbnail');
+        const voomlyIframe = document.getElementById('voomly-iframe');
 
-    function startAuto() {
-        if (intervalId) clearInterval(intervalId);
-        intervalId = setInterval(function () {
-            showSlide(currentIndex + 1 >= slides.length ? 0 : currentIndex + 1);
-        }, 6000);
-    }
+        const voomlyUrl = 'https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU&videoRatio=1.777778&type=v&skinColor=rgba(0%2C31%2C100%2C1)';
 
-    function stopAuto() {
-        if (intervalId) { clearInterval(intervalId); intervalId = null; }
-    }
-
-    if (slides.length > 0) {
-        createDots();
-        showSlide(0);
-        startAuto();
-        const container = document.getElementById('testimonialContainer');
-        if (container) {
-            container.addEventListener('mouseenter', stopAuto);
-            container.addEventListener('mouseleave', startAuto);
+        function playVideo() {
+            voomlyIframe.src = voomlyUrl;
+            voomlyIframe.style.display = 'block';
+            videoThumbnail.classList.add('hidden');
+            playButton.classList.add('hidden');
         }
-        document.addEventListener('visibilitychange', function () {
-            document.hidden ? stopAuto() : startAuto();
-        });
-    }
-})();
-        </script>
+
+        playButton.addEventListener('click', playVideo);
+        videoThumbnail.addEventListener('click', playVideo);
+    </script>
 
     </body>
 </html>
