@@ -8,6 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://YOUR_DOMAIN.com/">
+    <link rel="icon" href="/favicon-colour.svg">
+    <link rel="apple-touch-icon" href="/favicon-colour.svg">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" type="font/woff2" crossorigin>
     <title>Value M | Client-Facing Delivery for CEOs and Founders</title>
     <meta name="description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
     <meta property="og:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
@@ -44,7 +48,7 @@
       "@type": "VideoObject",
       "name": "Value M: Two minutes. Three problems. One system.",
       "description": "Watch how companies like yours close the delivery gap for good. Learn the three key problems in client-facing delivery and the system to fix them.",
-      "thumbnailUrl": "https://YOUR_DOMAIN.com/video-thumbnail.jpg",
+      "thumbnailUrl": "https://YOUR_DOMAIN.com/video-thumbnail.webp",
       "uploadDate": "2026-05-22",
       "duration": "PT2M",
       "contentUrl": "https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU",
@@ -137,10 +141,10 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #001F64;
+        .logo-image {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
         .nav-button {
@@ -556,7 +560,7 @@
 <body>
     <nav id="nav">
         <div class="nav-content">
-            <div class="logo">Value M</div>
+            <img src="/favicon-colour.svg" alt="Value M" class="logo-image">
             <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span>&rarr;</span></a>
         </div>
     </nav>
@@ -597,7 +601,7 @@
                 <h2>Two minutes &middot; Three problems &middot; One system</h2>
                 <p class="video-subheading">Watch how companies like yours close the delivery gap for good.</p>
                 <div class="video-wrapper" id="video-container">
-                    <img src="https://YOUR_DOMAIN.com/video-thumbnail.jpg" alt="Value M Client Delivery System Video Thumbnail" class="video-thumbnail">
+                    <img src="/video-thumbnail.webp" alt="Value M Client Delivery System Video Thumbnail" class="video-thumbnail">
                     <button class="play-button" aria-label="Play video"></button>
                     <iframe id="voomly-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Value M Client Delivery System Video" style="display: none;"></iframe>
                 </div>
