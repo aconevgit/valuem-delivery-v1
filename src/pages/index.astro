@@ -11,6 +11,10 @@
     <link rel="canonical" href="https://YOUR_DOMAIN.com/">
     <link rel="icon" href="/favicon-colour.svg">
     <link rel="apple-touch-icon" href="/favicon-colour.svg">
+    <link rel="preload" href="/fonts/inter/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter/Inter-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
     <title>Value M | Client-Facing Delivery for CEOs and Founders</title>
     <meta name="description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
     <meta property="og:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
@@ -131,7 +135,6 @@
         }
 
         section {
-            animation: fadeInUp 0.4s ease-out forwards;
             opacity: 0;
         }
 
@@ -618,14 +621,14 @@
 <body>
     <nav id="nav">
         <div class="nav-content">
-            <a href="#" id="logo-link"><img src="/favicon-colour.svg" alt="Value M" class="logo-image"></a>
+            <a href="#" id="logo-link"><img src="/favicon-colour.svg" alt="Value M" class="logo-image" width="32" height="32"></a>
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link">Home</a></li>
                 <li><a href="#symptoms-section" class="nav-link">Symptoms</a></li>
                 <li><a href="#video-section" class="nav-link">Solution</a></li>
                 <li><a href="#clients" class="nav-link">Clients</a></li>
             </ul>
-            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span>&rarr;</span></a>
+            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span aria-hidden="true">&rarr;</span></a>
         </div>
     </nav>
 
@@ -637,7 +640,7 @@
                 <p class="hero-subheading">Your clients experience your people first. Your product is great, how you deliver it is not.</p>
                 <div class="button-group">
                     <a href="#video-section" class="primary-button">Fix these 3 first</a>
-                    <a href="#symptoms-section" class="secondary-button">Explore</a>
+                    <a href="#symptoms-section" class="secondary-button">See the symptoms</a>
                 </div>
             </div>
         </section>
@@ -665,7 +668,16 @@
                 <h2>Two minutes &middot; Three problems &middot; One system</h2>
                 <p class="video-subheading">Watch how companies like yours close the delivery gap for good.</p>
                 <div class="video-wrapper" id="video-container">
-                    <img src="/video-thumbnail.webp" alt="Value M Client Delivery System Video Thumbnail" class="video-thumbnail">
+                    <img
+                        src="/video-thumbnail.webp"
+                        srcset="/video-thumbnail-960.webp 960w, /video-thumbnail.webp 1920w"
+                        sizes="(min-width: 1008px) 960px, calc(100vw - 48px)"
+                        alt="Value M Client Delivery System Video Thumbnail"
+                        class="video-thumbnail"
+                        width="1920"
+                        height="1080"
+                        fetchpriority="high"
+                    >
                     <button class="play-button" aria-label="Play video"></button>
                     <iframe id="voomly-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Value M Client Delivery System Video" style="display: none;"></iframe>
                 </div>
