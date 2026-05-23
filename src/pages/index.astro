@@ -58,28 +58,28 @@
     <style is:global>
         @font-face {
             font-family: 'Inter';
-            src: url('/fonts/inter/inter-400.woff2') format('woff2');
+            src: url('/fonts/inter/Inter-Regular.woff2') format('woff2');
             font-weight: 400;
             font-display: swap;
         }
 
         @font-face {
             font-family: 'Inter';
-            src: url('/fonts/inter/inter-600.woff2') format('woff2');
+            src: url('/fonts/inter/Inter-SemiBold.woff2') format('woff2');
             font-weight: 600;
             font-display: swap;
         }
 
         @font-face {
             font-family: 'Inter';
-            src: url('/fonts/inter/inter-700.woff2') format('woff2');
+            src: url('/fonts/inter/Inter-Bold.woff2') format('woff2');
             font-weight: 700;
             font-display: swap;
         }
 
         @font-face {
             font-family: 'Inter';
-            src: url('/fonts/inter/inter-800.woff2') format('woff2');
+            src: url('/fonts/inter/Inter-ExtraBold.woff2') format('woff2');
             font-weight: 800;
             font-display: swap;
         }
@@ -149,8 +149,9 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
             padding: 16px 0;
         }
 
@@ -163,8 +164,39 @@
             margin: 0 auto;
             padding: 0 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 40px;
+        }
+
+        .nav-content .nav-button {
+            margin-left: auto;
+        }
+
+        .nav-menu {
+            display: none;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: color var(--transition), border-color var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
         }
 
         .logo-image {
@@ -586,7 +618,13 @@
 <body>
     <nav id="nav">
         <div class="nav-content">
-            <img src="/favicon-colour.svg" alt="Value M" class="logo-image">
+            <a href="#" id="logo-link"><img src="/favicon-colour.svg" alt="Value M" class="logo-image"></a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#symptoms-section" class="nav-link">Symptoms</a></li>
+                <li><a href="#video-section" class="nav-link">Solution</a></li>
+                <li><a href="#clients" class="nav-link">Clients</a></li>
+            </ul>
             <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span>&rarr;</span></a>
         </div>
     </nav>
@@ -634,7 +672,7 @@
             </div>
         </section>
 
-        <section class="testimonials">
+        <section id="clients" class="testimonials">
             <div class="container">
                 <h2>Proven across industries</h2>
                 <p class="testimonials-subheading">Different sectors. Different sizes. The same fix.</p>
@@ -674,6 +712,11 @@
     </footer>
 
     <script>
+        document.getElementById('logo-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
