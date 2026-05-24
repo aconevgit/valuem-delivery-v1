@@ -162,8 +162,10 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
 
     <script>
         document.getElementById('logo-link')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
