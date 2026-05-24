@@ -110,6 +110,13 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             font-size: var(--font-base);
             font-weight: 400;
             line-height: var(--line-height);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
         }
 
         @keyframes fadeInUp {
@@ -124,6 +131,15 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             max-width: 960px;
             margin: 0 auto;
             padding: 0 24px;
+        }
+
+        .pre-heading {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-primary);
+            margin-bottom: 16px;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -172,7 +188,12 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
         }, observerOptions);
 
         document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                section.classList.add('in-view');
+            } else {
+                observer.observe(section);
+            }
         });
 
         const videoContainer = document.getElementById('video-container');
