@@ -1,0 +1,81 @@
+---
+---
+<style>
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        padding: 16px 0;
+    }
+    nav.scrolled {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .nav-content {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .nav-content .nav-button { margin-left: auto; }
+    .nav-menu {
+        display: none;
+        list-style: none;
+        gap: 40px;
+    }
+    .nav-link {
+        color: var(--color-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition: color var(--transition), border-color var(--transition);
+    }
+    .nav-link:hover {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+    }
+    @media (min-width: 768px) {
+        .nav-menu { display: flex; }
+    }
+    .logo-image {
+        height: 32px;
+        width: auto;
+        display: block;
+    }
+    .nav-button {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+        transition: opacity var(--transition);
+    }
+    .nav-button:hover { opacity: 0.7; }
+</style>
+
+<nav id="nav">
+    <div class="nav-content">
+        <a href="#" id="logo-link">
+            <img src="/favicon-colour.svg" alt="Value M" class="logo-image" width="32" height="32">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="#symptoms-section" class="nav-link">Symptoms</a></li>
+            <li><a href="#video-section" class="nav-link">Solution</a></li>
+            <li><a href="#clients" class="nav-link">Clients</a></li>
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+        </ul>
+        <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span aria-hidden="true">&rarr;</span></a>
+    </div>
+</nav>

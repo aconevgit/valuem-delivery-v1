@@ -1,636 +1,11 @@
 ---
-// Value M Landing Page — Migrated from vanilla HTML to Astro
-// Calendly: https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CtaFooter from '../components/CtaFooter.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://YOUR_DOMAIN.com/">
-    <link rel="icon" href="/favicon-colour.svg">
-    <link rel="apple-touch-icon" href="/favicon-colour.svg">
-    <link rel="preload" href="/fonts/inter/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/inter/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/inter/Inter-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
-    <title>Value M | Client-Facing Delivery for CEOs and Founders</title>
-    <meta name="description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
-    <meta property="og:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
-    <meta property="og:description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
-    <meta property="og:image" content="https://YOUR_DOMAIN.com/og-image.png">
-    <meta property="og:url" content="https://YOUR_DOMAIN.com">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Value M | Client-Facing Delivery for CEOs and Founders">
-    <meta name="twitter:description" content="Value M helps CEOs and founders fix broken client-facing delivery. Watch the free video and book a 30-minute discovery call.">
-    <meta name="twitter:image" content="https://YOUR_DOMAIN.com/og-image.png">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Value M",
-      "url": "https://YOUR_DOMAIN.com",
-      "logo": "https://YOUR_DOMAIN.com/logo.png",
-      "description": "Value M helps CEOs and founders fix broken client-facing delivery. We provide methodology, frameworks, and coaching to improve client engagement and delivery outcomes.",
-      "sameAs": [
-        "https://linkedin.com/company/value-m",
-        "https://twitter.com/valuem"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "url": "https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05",
-        "contactType": "Sales"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Value M: Two minutes. Three problems. One system.",
-      "description": "Watch how companies like yours close the delivery gap for good. Learn the three key problems in client-facing delivery and the system to fix them.",
-      "thumbnailUrl": "https://YOUR_DOMAIN.com/video-thumbnail.webp",
-      "uploadDate": "2026-05-22",
-      "duration": "PT2M",
-      "contentUrl": "https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU",
-      "embedUrl": "https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU"
-    }
-    </script>
-
-    <style is:global>
-        @font-face {
-            font-family: 'Inter';
-            src: url('/fonts/inter/Inter-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            src: url('/fonts/inter/Inter-SemiBold.woff2') format('woff2');
-            font-weight: 600;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            src: url('/fonts/inter/Inter-Bold.woff2') format('woff2');
-            font-weight: 700;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            src: url('/fonts/inter/Inter-ExtraBold.woff2') format('woff2');
-            font-weight: 800;
-            font-display: swap;
-        }
-
-        :root {
-            --color-primary: #001F64;
-            --color-text: #000000;
-            --color-text-light: #444444;
-            --color-text-muted: #666666;
-            --color-bg: #ffffff;
-            --color-bg-alt: #F7F8FA;
-            --color-border: #E5E7EB;
-            --color-bg-dark: #000000;
-            --font-base: 17px;
-            --line-height: 1.7;
-            --line-height-tight: 1.15;
-            --radius: 9999px;
-            --transition: 0.2s ease-out;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-size: var(--font-base);
-            font-weight: 400;
-            line-height: var(--line-height);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        section {
-            opacity: 0;
-        }
-
-        section.in-view {
-            animation: fadeInUp 0.4s ease-out forwards;
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-            padding: 16px 0;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-content {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .nav-content .nav-button {
-            margin-left: auto;
-        }
-
-        .nav-menu {
-            display: none;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-link {
-            color: var(--color-text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: color var(--transition), border-color var(--transition);
-        }
-
-        .nav-link:hover {
-            color: var(--color-primary);
-            border-bottom-color: var(--color-primary);
-        }
-
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex;
-            }
-        }
-
-        .logo-image {
-            height: 32px;
-            width: auto;
-            display: block;
-        }
-
-        .nav-button {
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0;
-            transition: opacity var(--transition);
-        }
-
-        .nav-button:hover {
-            opacity: 0.7;
-        }
-
-        .hero {
-            background-color: var(--color-bg);
-            padding: 64px 0;
-        }
-
-        .pre-heading {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-primary);
-            margin-bottom: 16px;
-        }
-
-        .hero h1 {
-            font-size: 46px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-
-        .hero-subheading {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--color-text-light);
-            margin-bottom: 56px;
-            line-height: 1.7;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: fit-content;
-        }
-
-        .primary-button, .secondary-button {
-            padding: 14px 36px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius);
-            white-space: nowrap;
-            transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
-        }
-
-        .primary-button {
-            background-color: var(--color-primary);
-            color: var(--color-bg);
-        }
-
-        .primary-button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
-        }
-
-        .secondary-button {
-            background-color: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
-
-        .secondary-button:hover {
-            background-color: var(--color-primary);
-            color: var(--color-bg);
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
-        }
-
-        .symptoms {
-            background-color: var(--color-bg-alt);
-            padding: 56px 0;
-        }
-
-        .symptoms h2 {
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-
-        .symptoms-subheading {
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--color-text-light);
-            margin-bottom: 56px;
-            line-height: 1.7;
-        }
-
-        .symptoms-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
-            list-style: none;
-        }
-
-        .symptoms-list li {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .symptom-text {
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--color-text);
-        }
-
-        .symptom-text::before {
-            content: '!';
-            color: var(--color-primary);
-            margin-right: 12px;
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        @media (min-width: 768px) {
-            .symptoms-list {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
-            }
-        }
-
-        .video-section {
-            background-color: var(--color-bg);
-            padding: 56px 0;
-        }
-
-        .video-section h2 {
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-
-        .video-subheading {
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--color-text-light);
-            margin-bottom: 56px;
-            line-height: 1.7;
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            cursor: pointer;
-        }
-
-        .video-thumbnail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: opacity 0.3s ease-out;
-        }
-
-        .video-thumbnail.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background-color: var(--color-primary);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-        }
-
-        .play-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 12px 24px rgba(0, 31, 100, 0.25);
-        }
-
-        .play-button::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 28px solid var(--color-bg);
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
-            margin-left: 4px;
-        }
-
-        .play-button.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .testimonials {
-            background-color: var(--color-bg-alt);
-            padding: 56px 0;
-        }
-
-        .testimonials h2 {
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-
-        .testimonials-subheading {
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--color-text-light);
-            margin-bottom: 56px;
-            line-height: 1.7;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        .testimonial-card {
-            background-color: var(--color-bg);
-            border: 1px solid var(--color-border);
-            padding: 40px;
-        }
-
-        .testimonial-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #001F64;
-            margin-bottom: 16px;
-        }
-
-        .testimonial-quote {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .testimonial-title {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--color-text-muted);
-        }
-
-        .final-cta {
-            background-color: var(--color-bg);
-            padding: 64px 0;
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 32px;
-            color: var(--color-text);
-        }
-
-        .cta-button-large {
-            background-color: var(--color-primary);
-            color: var(--color-bg);
-            padding: 14px 48px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius);
-            transition: transform var(--transition), box-shadow var(--transition);
-        }
-
-        .cta-button-large:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
-        }
-
-        @media (min-width: 1024px) {
-            .final-cta {
-                padding: 100px 0;
-            }
-
-            .final-cta h2 {
-                font-size: 40px;
-                margin-bottom: 40px;
-            }
-        }
-
-        footer {
-            background-color: var(--color-bg-dark);
-            color: var(--color-bg);
-            padding: 16px 0;
-            text-align: center;
-        }
-
-        footer .logo {
-            color: #ffffff;
-            margin-bottom: 16px;
-        }
-
-        .copyright {
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        @media (min-width: 768px) {
-            .button-group {
-                flex-direction: row;
-                gap: 24px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero {
-                padding: 120px 0;
-            }
-
-            .hero h1 {
-                font-size: 64px;
-            }
-
-            .symptoms {
-                padding: 120px 0;
-            }
-
-            .symptoms h2 {
-                font-size: 46px;
-            }
-
-            .video-section {
-                padding: 120px 0;
-            }
-
-            .video-section h2 {
-                font-size: 40px;
-            }
-
-            .testimonials {
-                padding: 120px 0;
-            }
-
-            .testimonials h2 {
-                font-size: 40px;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
-    </head>
-<body>
-    <nav id="nav">
-        <div class="nav-content">
-            <a href="#" id="logo-link"><img src="/favicon-colour.svg" alt="Value M" class="logo-image" width="32" height="32"></a>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link">Home</a></li>
-                <li><a href="#symptoms-section" class="nav-link">Symptoms</a></li>
-                <li><a href="#video-section" class="nav-link">Solution</a></li>
-                <li><a href="#clients" class="nav-link">Clients</a></li>
-            </ul>
-            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="nav-button">Let's Talk <span aria-hidden="true">&rarr;</span></a>
-        </div>
-    </nav>
+<Layout>
+    <Header />
 
     <main>
         <section class="hero">
@@ -650,15 +25,9 @@
                 <h2>Broken delivery costs more than you think</h2>
                 <p class="symptoms-subheading">The revenue hit is visible. The reputation damage is not. By the time you see it, the client has already decided to leave.</p>
                 <ul class="symptoms-list">
-                    <li>
-                        <div class="symptom-text">Your team says YES to anything</div>
-                    </li>
-                    <li>
-                        <div class="symptom-text">You are pulled into escalations</div>
-                    </li>
-                    <li>
-                        <div class="symptom-text">You keep hiring, but speed goes down</div>
-                    </li>
+                    <li><div class="symptom-text">Your team says YES to anything</div></li>
+                    <li><div class="symptom-text">You are pulled into escalations</div></li>
+                    <li><div class="symptom-text">You keep hiring, but speed goes down</div></li>
                 </ul>
             </div>
         </section>
@@ -712,77 +81,244 @@
         </section>
     </main>
 
-    <section class="final-cta">
-        <div class="container">
-            <h2>Ready to fix your delivery?</h2>
-            <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="cta-button-large">Book your discovery call</a>
-        </div>
-    </section>
+    <CtaFooter />
+</Layout>
 
-    <footer>
-        <p class="copyright">&copy; 2026 Value M&trade;</p>
-    </footer>
-
-    <script>
-        document.getElementById('logo-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && document.querySelector(href)) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        const videoContainer = document.getElementById('video-container');
-        const playButton = document.querySelector('.play-button');
-        const videoThumbnail = document.querySelector('.video-thumbnail');
-        const voomlyIframe = document.getElementById('voomly-iframe');
-
-        const voomlyUrl = 'https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU&videoRatio=1.777778&type=v&skinColor=rgba(0%2C31%2C100%2C1)';
-
-        function playVideo() {
-            voomlyIframe.src = voomlyUrl;
-            voomlyIframe.style.display = 'block';
-            videoThumbnail.classList.add('hidden');
-            playButton.classList.add('hidden');
-        }
-
-        playButton.addEventListener('click', playVideo);
-        videoThumbnail.addEventListener('click', playVideo);
-    </script>
-
-    </body>
-</html>
+<style>
+    .hero {
+        background-color: var(--color-bg);
+        padding: 64px 0;
+    }
+    .pre-heading {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-primary);
+        margin-bottom: 16px;
+    }
+    .hero h1 {
+        font-size: 46px;
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+    .hero-subheading {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--color-text-light);
+        margin-bottom: 56px;
+        line-height: 1.7;
+    }
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: fit-content;
+    }
+    .primary-button, .secondary-button {
+        padding: 14px 36px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius);
+        white-space: nowrap;
+        transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
+    }
+    .primary-button {
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+    }
+    .primary-button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+    }
+    .secondary-button {
+        background-color: transparent;
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+    }
+    .secondary-button:hover {
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+    }
+    .symptoms {
+        background-color: var(--color-bg-alt);
+        padding: 56px 0;
+    }
+    .symptoms h2 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+    .symptoms-subheading {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--color-text-light);
+        margin-bottom: 56px;
+        line-height: 1.7;
+    }
+    .symptoms-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 48px;
+        list-style: none;
+    }
+    .symptoms-list li {
+        display: flex;
+        flex-direction: column;
+    }
+    .symptom-text {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: var(--color-text);
+    }
+    .symptom-text::before {
+        content: '!';
+        color: var(--color-primary);
+        margin-right: 12px;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    @media (min-width: 768px) {
+        .symptoms-list { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    }
+    .video-section {
+        background-color: var(--color-bg);
+        padding: 56px 0;
+    }
+    .video-section h2 {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+    .video-subheading {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--color-text-light);
+        margin-bottom: 56px;
+        line-height: 1.7;
+    }
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        cursor: pointer;
+    }
+    .video-thumbnail {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.3s ease-out;
+    }
+    .video-thumbnail.hidden { opacity: 0; pointer-events: none; }
+    .play-button {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px; height: 80px;
+        background-color: var(--color-primary);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+    .play-button:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 12px 24px rgba(0, 31, 100, 0.25);
+    }
+    .play-button::after {
+        content: '';
+        width: 0; height: 0;
+        border-left: 28px solid var(--color-bg);
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        margin-left: 4px;
+    }
+    .play-button.hidden { opacity: 0; pointer-events: none; }
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+    }
+    .testimonials {
+        background-color: var(--color-bg-alt);
+        padding: 56px 0;
+    }
+    .testimonials h2 {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+    .testimonials-subheading {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--color-text-light);
+        margin-bottom: 56px;
+        line-height: 1.7;
+    }
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .testimonial-card {
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-border);
+        padding: 40px;
+    }
+    .testimonial-label {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #001F64;
+        margin-bottom: 16px;
+    }
+    .testimonial-quote {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    .testimonial-name {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .testimonial-title {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--color-text-muted);
+    }
+    @media (min-width: 768px) {
+        .button-group { flex-direction: row; gap: 24px; }
+    }
+    @media (min-width: 1024px) {
+        .hero { padding: 120px 0; }
+        .hero h1 { font-size: 64px; }
+        .symptoms { padding: 120px 0; }
+        .symptoms h2 { font-size: 46px; }
+        .video-section { padding: 120px 0; }
+        .video-section h2 { font-size: 40px; }
+        .testimonials { padding: 120px 0; }
+        .testimonials h2 { font-size: 40px; }
+        .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+</style>

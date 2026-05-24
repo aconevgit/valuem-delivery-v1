@@ -1,0 +1,49 @@
+---
+import Footer from './Footer.astro';
+---
+<style>
+    .final-cta {
+        background-color: var(--color-bg);
+        padding: 64px 0;
+        text-align: center;
+    }
+    .final-cta h2 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 32px;
+        color: var(--color-text);
+    }
+    .cta-button-large {
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        padding: 14px 48px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius);
+        transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .cta-button-large:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 31, 100, 0.15);
+    }
+    @media (min-width: 1024px) {
+        .final-cta { padding: 100px 0; }
+        .final-cta h2 { font-size: 40px; margin-bottom: 40px; }
+    }
+</style>
+
+<section class="final-cta">
+    <div class="container">
+        <h2>Ready to fix your delivery?</h2>
+        <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="cta-button-large">Book your discovery call</a>
+    </div>
+</section>
+
+<Footer />
