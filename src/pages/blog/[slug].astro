@@ -14,61 +14,239 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const slug = post.id.replace(/\.mdx?$/, '');
+const SITE_URL = 'https://valuemdelivery.com';
+const postUrl = `${SITE_URL}/blog/${slug}`;
+const author = post.data.author ?? 'Value M';
+
+function readingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / 200);
+  return `${minutes} min read`;
+}
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  url: postUrl,
+  author: {
+    '@type': 'Person',
+    name: author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Value M',
+    url: SITE_URL,
+  },
+  ...(post.data.ogImage ? { image: post.data.ogImage } : {}),
+});
 ---
 
-<Layout title={`${post.data.title} | Value M`}>
+<Layout
+  title={`${post.data.title} | Value M`}
+  description={post.data.description}
+  ogType="article"
+  canonicalPath={`/blog/${slug}`}
+  ogImage={post.data.ogImage}
+  articleDate={post.data.pubDate.toISOString()}
+  articleAuthor={author}
+  schema={schema}
+>
   <Header />
+
   <main>
-    <div class="container">
-      <article>
-        <h1>{post.data.title}</h1>
-        <time>{post.data.pubDate.toLocaleDateString('en-GB')}</time>
-        <div class="content">
-          <Content />
+    <article>
+      <header class="post-header">
+        <div class="container">
+          <div class="post-header-inner">
+            <a href="/blog" class="back-link"><span aria-hidden="true">&larr;</span> All articles</a>
+            <div class="post-meta">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+              <span class="separator">·</span>
+              <span class="reading-time">{readingTime(post.body ?? '')}</span>
+              {post.data.author && (
+                <>
+                  <span class="separator">·</span>
+                  <span class="author">{post.data.author}</span>
+                </>
+              )}
+            </div>
+            <h1>{post.data.title}</h1>
+            <p class="post-description">{post.data.description}</p>
+          </div>
         </div>
-      </article>
-    </div>
+      </header>
+
+      <div class="post-body">
+        <div class="container">
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </article>
   </main>
+
   <Footer />
 </Layout>
 
 <style>
-  main {
-    padding: 64px 0;
+  .post-header {
+    background-color: var(--color-bg);
+    padding: 48px 0;
+    border-bottom: 1px solid var(--color-border);
   }
-  article {
+
+  .post-header-inner {
     max-width: 680px;
+    margin: 0 auto;
   }
-  h1 {
-    font-size: 46px;
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: opacity var(--transition);
+  }
+
+  .back-link:hover {
+    opacity: 0.7;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  time, .reading-time, .author {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .separator {
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+
+  .post-header h1 {
+    font-size: 40px;
     font-weight: 800;
     line-height: 1.15;
-    margin-bottom: 16px;
-  }
-  time {
-    font-size: 14px;
-    color: var(--color-text-muted);
-    display: block;
-    margin-bottom: 48px;
-  }
-  .content {
-    font-size: 17px;
-    line-height: 1.7;
+    margin-bottom: 20px;
     color: var(--color-text);
   }
-  .content p {
-    margin-bottom: 24px;
+
+  .post-description {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-text-light);
+    line-height: 1.7;
   }
-  .content h2 {
+
+  .post-body {
+    padding: 48px 0;
+  }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+
+  .content :global(p) {
+    margin-bottom: 28px;
+  }
+
+  .content :global(h2) {
     font-size: 28px;
     font-weight: 700;
-    margin-top: 48px;
+    line-height: 1.2;
+    margin-top: 56px;
     margin-bottom: 16px;
+    color: var(--color-text);
   }
-  .content h3 {
+
+  .content :global(h3) {
     font-size: 22px;
     font-weight: 700;
-    margin-top: 32px;
+    line-height: 1.2;
+    margin-top: 40px;
     margin-bottom: 12px;
+    color: var(--color-text);
+  }
+
+  .content :global(ul), .content :global(ol) {
+    padding-left: 24px;
+    margin-bottom: 28px;
+  }
+
+  .content :global(li) {
+    margin-bottom: 8px;
+  }
+
+  .content :global(strong) {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .content :global(a:hover) {
+    opacity: 0.7;
+  }
+
+  .content :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 40px 0;
+  }
+
+  .content :global(blockquote) {
+    border-left: 3px solid var(--color-primary);
+    padding-left: 24px;
+    margin: 40px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1024px) {
+    .post-header {
+      padding: 80px 0;
+    }
+
+    .post-header h1 {
+      font-size: 52px;
+    }
+
+    .post-body {
+      padding: 56px 0;
+    }
+
+    .content {
+      font-size: 18px;
+    }
   }
 </style>

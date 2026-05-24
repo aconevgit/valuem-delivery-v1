@@ -6,68 +6,188 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function readingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / 200);
+  return `${minutes} min read`;
+}
 ---
 
-<Layout title="Blog | Value M">
+<Layout title="Blog | Value M" description="Insights on client-facing delivery, leadership, and business scaling for CEOs and founders." canonicalPath="/blog">
   <Header />
+
   <main>
-    <div class="container">
-      <h1>Blog</h1>
-      <ul class="post-list">
-        {posts.map(post => (
-          <li>
-            <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}>
-              <h2>{post.data.title}</h2>
-              <p>{post.data.description}</p>
-              <time>{post.data.pubDate.toLocaleDateString('en-GB')}</time>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section class="blog-hero">
+      <div class="container">
+        <p class="pre-heading">Insights</p>
+        <h1>What we know about delivery</h1>
+        <p class="hero-subheading">Practical thinking on client-facing delivery, team performance, and business scaling. No methodology lectures. No filler.</p>
+      </div>
+    </section>
+
+    <section class="post-list-section">
+      <div class="container">
+        {posts.length === 0 ? (
+          <p class="empty-state">No posts yet. Check back soon.</p>
+        ) : (
+          <ul class="post-list">
+            {posts.map(post => (
+              <li class="post-card">
+                <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}>
+                  <div class="post-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </time>
+                    <span class="separator">·</span>
+                    <span class="reading-time">{readingTime(post.body ?? '')}</span>
+                  </div>
+                  <h2>{post.data.title}</h2>
+                  <p class="post-description">{post.data.description}</p>
+                  <span class="read-more">Read article <span aria-hidden="true">&rarr;</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
   </main>
+
   <Footer />
 </Layout>
 
 <style>
-  main {
-    padding: 64px 0;
+  .blog-hero {
+    background-color: var(--color-bg);
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--color-border);
   }
-  h1 {
+
+  .pre-heading {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .blog-hero h1 {
     font-size: 46px;
     font-weight: 800;
     line-height: 1.15;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
+
+  .hero-subheading {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .post-list-section {
+    padding: 64px 0;
+    background-color: var(--color-bg);
+  }
+
   .post-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 40px;
   }
-  .post-list a {
-    text-decoration: none;
-    color: var(--color-text);
-    display: block;
-    padding-bottom: 40px;
+
+  .post-card {
     border-bottom: 1px solid var(--color-border);
   }
-  .post-list h2 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    transition: color var(--transition);
+
+  .post-card a {
+    display: block;
+    padding: 40px 0;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--transition);
   }
-  .post-list a:hover h2 {
-    color: var(--color-primary);
+
+  .post-card a:hover {
+    opacity: 0.7;
   }
-  .post-list p {
-    font-size: 17px;
-    color: var(--color-text-light);
-    margin-bottom: 12px;
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
   }
+
   time {
     font-size: 14px;
+    font-weight: 400;
     color: var(--color-text-muted);
+  }
+
+  .separator {
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+
+  .reading-time {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .post-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: var(--color-text);
+    transition: color var(--transition);
+  }
+
+  .post-card a:hover h2 {
+    color: var(--color-primary);
+  }
+
+  .post-description {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-width: 640px;
+  }
+
+  .read-more {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .empty-state {
+    font-size: 17px;
+    color: var(--color-text-muted);
+    padding: 64px 0;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-hero {
+      padding: 100px 0 64px;
+    }
+
+    .blog-hero h1 {
+      font-size: 64px;
+    }
+
+    .post-list-section {
+      padding: 80px 0;
+    }
+
+    .post-card h2 {
+      font-size: 28px;
+    }
   }
 </style>
