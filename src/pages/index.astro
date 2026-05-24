@@ -11,26 +11,28 @@ import CtaFooter from '../components/CtaFooter.astro';
         <section class="hero">
             <div class="container">
                 <p class="pre-heading">For CEOs and Founders</p>
-                <h1>Weak client-facing delivery kills your profit</h1>
-                <p class="hero-subheading">Your clients experience your people first. Your product is great, how you deliver it is not.</p>
+                <h1>Fix your client-facing delivery</h1>
+                <p class="hero-subheading">The ValueM™ Client Delivery System helps CEOs and Founders reduce overpromising, stop escalations and fix broken delivery without hiring more people.</p>
                 <div class="button-group">
-                    <a href="#video-section" class="primary-button">Fix these 3 first</a>
-                    <a href="#symptoms-section" class="secondary-button">See the symptoms</a>
+                    <a href="#video-section" class="primary-button">Fix my client delivery</a>
+                    <a href="#symptoms-section" class="secondary-button">Spot the 3 symptoms</a>
                 </div>
             </div>
         </section>
 
         <section id="symptoms-section" class="symptoms">
-            <div class="container">
-                <h2>Broken delivery costs more than you think</h2>
-                <p class="symptoms-subheading">The revenue hit is visible. The reputation damage is not. By the time you see it, the client has already decided to leave.</p>
-                <ul class="symptoms-list">
-                    <li><div class="symptom-text">Your team says YES to anything</div></li>
-                    <li><div class="symptom-text">You are pulled into escalations</div></li>
-                    <li><div class="symptom-text">You keep hiring, but speed goes down</div></li>
-                </ul>
-            </div>
-        </section>
+    <div class="container">
+        <h2>The hidden cost of weak client delivery</h2>
+        <p class="symptoms-subheading">The client experiences your people before your product. Most companies obsess over what they build and ignore how they deliver it. That gap is invisible. And fatal.</p>
+        <p class="symptoms-subheading">When you are small, your best people cover the cracks. When you scale, you can no longer rely on A-players. You need a system that works with normal people. Here is what breaks first:</p>
+
+        <ul class="symptoms-list">
+            <li><div class="symptom-text">No one on your team says no to a client.</div></li>
+            <li><div class="symptom-text">Every difficult conversation falls to you.</div></li>
+            <li><div class="symptom-text">You keep hiring. It keeps getting slower.</div></li>
+        </ul>
+    </div>
+</section>
 
         <section id="video-section" class="video-section">
             <div class="container">
@@ -161,28 +163,24 @@ import CtaFooter from '../components/CtaFooter.astro';
     .symptoms-list {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 48px;
+        gap: 16px;
         list-style: none;
     }
     .symptoms-list li {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-border);
+        padding: 28px 32px;
     }
     .symptom-text {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         line-height: 1.4;
         color: var(--color-text);
     }
-    .symptom-text::before {
-        content: '!';
-        color: var(--color-primary);
-        margin-right: 12px;
-        font-size: 24px;
-        font-weight: 800;
-    }
     @media (min-width: 768px) {
-        .symptoms-list { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .symptoms-list { grid-template-columns: repeat(3, 1fr); gap: 24px; }
     }
     .video-section {
         background-color: var(--color-bg);
