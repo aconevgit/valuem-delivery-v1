@@ -94,7 +94,7 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             font-family: 'Inter';
             src: url('/fonts/inter/Inter-ExtraBold.woff2') format('woff2');
             font-weight: 800;
-            font-display: optional;
+            font-display: swap;
         }
 
         :root {
@@ -212,9 +212,11 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             });
         }, observerOptions);
 
-        document.querySelectorAll('section').forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
+        // Batch all reads before any writes to avoid forced reflow
+        const sections = Array.from(document.querySelectorAll('section'));
+        const rects = sections.map(section => section.getBoundingClientRect());
+        sections.forEach((section, i) => {
+            if (rects[i].top < window.innerHeight) {
                 // Already in viewport - start visible, no animation delay
                 section.classList.add('in-view');
             } else {

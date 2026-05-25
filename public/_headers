@@ -1,5 +1,9 @@
 # Cloudflare Pages edge cache headers
 
+# Astro build assets — content-hashed filenames, safe to cache forever
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Fonts — long cache (1 year). Static filenames, but Cloudflare CDN cache
 # is purged on every deployment so stale-font risk is deployment-scoped only.
 # Browser cache is long but font updates are rare and always paired with a deploy.
