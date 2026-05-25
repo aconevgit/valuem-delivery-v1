@@ -134,8 +134,8 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             to { opacity: 1; transform: translateY(0); }
         }
 
-        section { opacity: 0; }
-        section.in-view { animation: fadeInUp 0.4s ease-out forwards; }
+        section.will-animate { opacity: 0; }
+        section.will-animate.in-view { animation: fadeInUp 0.4s ease-out forwards; }
 
         .container {
             max-width: 960px;
@@ -202,8 +202,11 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
         document.querySelectorAll('section').forEach(section => {
             const rect = section.getBoundingClientRect();
             if (rect.top < window.innerHeight) {
+                // Already in viewport — start visible, no animation delay
                 section.classList.add('in-view');
             } else {
+                // Below fold — mark for animation and observe
+                section.classList.add('will-animate');
                 observer.observe(section);
             }
         });
