@@ -1,4 +1,6 @@
 ---
+import { SITE_URL } from '../config';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -27,7 +29,6 @@ const {
   schema,
 } = Astro.props;
 
-import { SITE_URL } from '../config';
 const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
 ---
