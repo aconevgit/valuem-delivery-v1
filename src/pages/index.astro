@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import CtaFooter from '../components/CtaFooter.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout canonicalPath="/">
@@ -81,9 +82,10 @@ import CtaFooter from '../components/CtaFooter.astro';
                 </div>
             </div>
         </section>
+        <CtaFooter />
     </main>
 
-    <CtaFooter />
+    <Footer />
 </Layout>
 
 <style>
