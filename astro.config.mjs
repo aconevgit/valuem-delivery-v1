@@ -24,7 +24,7 @@ function rehypeLazyImages() {
 export default defineConfig({
   site: 'https://valuemdelivery.com',
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   integrations: [mdx(), sitemap()],
   markdown: {
