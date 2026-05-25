@@ -9,7 +9,7 @@ import { SITE_URL } from '../../config';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map(post => ({
-    params: { slug: post.id.replace(/\.mdx?$/, '') },
+    params: { slug: post.data.slug ?? post.id.replace(/\.mdx?$/, '') },
     props: { post },
   }));
 }
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const slug = post.id.replace(/\.mdx?$/, '');
+const slug = post.data.slug ?? post.id.replace(/\.mdx?$/, '');
 const postUrl = `${SITE_URL}/blog/${slug}`;
 const author = post.data.author ?? 'Value M';
 const resolvedOgImage = post.data.ogImage ?? `${SITE_URL}/og-image.png`;

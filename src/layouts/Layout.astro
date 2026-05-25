@@ -205,10 +205,10 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
         document.querySelectorAll('section').forEach(section => {
             const rect = section.getBoundingClientRect();
             if (rect.top < window.innerHeight) {
-                // Already in viewport — start visible, no animation delay
+                // Already in viewport - start visible, no animation delay
                 section.classList.add('in-view');
             } else {
-                // Below fold — mark for animation and observe
+                // Below fold - mark for animation and observe
                 section.classList.add('will-animate');
                 observer.observe(section);
             }

@@ -28,7 +28,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           <ul class="post-list">
             {posts.map(post => (
               <li class="post-card">
-                <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}>
+                <a href={`/blog/${post.data.slug ?? post.id.replace(/\.mdx?$/, '')}`}>
                   <div class="post-meta">
                     <time datetime={post.data.pubDate.toISOString()}>
                       {post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}

@@ -1,21 +1,27 @@
 ---
-# FILENAME → name this file: your-post-slug.md (hyphens, lowercase, keyword-rich)
-# The filename becomes the URL: /blog/your-post-slug
-# Example: client-facing-scope-management.md → /blog/client-facing-scope-management
+# FILENAME - name this file anything descriptive: your-topic.md (hyphens, lowercase)
+# The filename does NOT control the URL. The slug field below controls the URL.
+# Example: my-article.md with slug: "client-facing-scope-management" -> /blog/client-facing-scope-management
 
-title: "Primary Keyword Near the Front — Compelling Title Here"
-# 60 characters max. Put the primary keyword in the first 3–4 words.
+title: "Primary Keyword Near the Front - Compelling Title Here"
+# 60 characters max. Put the primary keyword in the first 3-4 words.
 # Truncated beyond 60 chars in Google search results.
 
-description: "One or two sentences. Include the primary keyword. Make someone want to click. 140–155 characters max — appears in Google results and social previews."
+description: "One or two sentences. Include the primary keyword. Make someone want to click. 140-155 characters max - appears in Google results and social previews."
 # Do not keyword-stuff. Write it as a genuine reason to read the article.
 
 pubDate: 2026-01-01
-# Format: YYYY-MM-DD. This is the original publish date — never change it after publishing.
+# Format: YYYY-MM-DD. This is the original publish date - never change it after publishing.
 
 updatedDate: 2026-01-01
 # Set this when you revise a published post. Omit it on new posts.
 # Updating this date signals freshness to Google.
+
+slug: "your-post-slug-here"
+# This controls the URL: /blog/your-post-slug-here
+# Use hyphens, lowercase, keyword-rich. This is what Google indexes.
+# Example: "client-facing-scope-management" -> /blog/client-facing-scope-management
+# Once published, never change this - it will break inbound links and SEO.
 
 author: "Asen Conev"
 # Always use a named author. Google's E-E-A-T guidelines reward named, credible authors.
@@ -23,14 +29,14 @@ author: "Asen Conev"
 category: "Delivery"
 # One category per post. Examples: Delivery, Leadership, Growth, Operations.
 
-tags: ["client delivery", "B2B", "add 3–5 keyword phrases here"]
+tags: ["client delivery", "B2B", "add 3-5 keyword phrases here"]
 # Use phrases your audience actually searches for.
 # Think: what would a CEO type into Google to find this article?
 
 ogImage: "/images/your-post-image.png"
-# REQUIRED SIZE: 1200 × 630 pixels. PNG or JPG.
+# REQUIRED SIZE: 1200 x 630 pixels. PNG or JPG.
 # Appears when shared on LinkedIn, Twitter, etc.
-# Omit to use the site default — acceptable but a custom image increases CTR.
+# Omit to use the site default - acceptable but a custom image increases CTR.
 
 draft: true
 # Keep true while writing. Set to false only when ready to publish.
