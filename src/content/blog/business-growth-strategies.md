@@ -53,7 +53,7 @@ The reason this misdiagnosis is so persistent is that architectural problems are
 
 Strip away the org chart, the brand, the product, the sales deck. Underneath all of it, every business is made of four fundamental elements.
 
-![Framework diagram showing the four elements of every business: Projects, Processes, Disasters, and Environment](/images/blog/business-growth-framework-diagram.webp)
+![Framework diagram showing the four elements of every business: Projects, Processes, Disasters, and Environment](/images/blog/business-growth-framework-diagram.webp){width=1360 height=765}
 
 **Projects.** Temporary efforts with a defined start, a defined end, and a specific outcome. Building a new service. Onboarding a new client. Launching a new market. Projects are one-time events. They require adaptability, decision-making under pressure, and tolerance for uncertainty.
 
