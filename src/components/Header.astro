@@ -121,10 +121,12 @@ import { CALENDLY_URL } from '../config';
 
     @media (min-width: 768px) {
         .nav-content { flex-wrap: nowrap; }
-        .nav-menu {
-            display: flex !important;
+        .nav-menu,
+        .nav-menu.open {
+            display: flex;
             flex-direction: row;
             width: auto;
+            gap: 40px;
             order: 0;
             padding: 0;
             border-top: none;
