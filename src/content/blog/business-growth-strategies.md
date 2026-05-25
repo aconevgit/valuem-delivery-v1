@@ -53,6 +53,8 @@ The reason this misdiagnosis is so persistent is that architectural problems are
 
 Strip away the org chart, the brand, the product, the sales deck. Underneath all of it, every business is made of four fundamental elements.
 
+![Framework diagram showing the four elements of every business: Projects, Processes, Disasters, and Environment](/images/blog/business-growth-framework-diagram.webp)
+
 **Projects.** Temporary efforts with a defined start, a defined end, and a specific outcome. Building a new service. Onboarding a new client. Launching a new market. Projects are one-time events. They require adaptability, decision-making under pressure, and tolerance for uncertainty.
 
 **Processes.** Ongoing, repeatable activities where the goal is consistency. Invoicing. Reporting. Monthly client updates. Processes are the opposite of projects. They require precision and repetition. Put a process person on a project and they'll ask for a manual that doesn't exist. Put a project person on a process and they'll invent variation where none should exist. Wrong tool, wrong environment.
