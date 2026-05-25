@@ -27,7 +27,7 @@ const {
   schema,
 } = Astro.props;
 
-const SITE_URL = 'https://valuemdelivery.com';
+import { SITE_URL } from '../config';
 const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
 ---
@@ -40,11 +40,13 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
     <link rel="canonical" href={canonicalUrl}>
     <link rel="icon" href="/favicon-colour.svg">
     <link rel="apple-touch-icon" href="/favicon-colour.svg">
+    <link rel="preconnect" href="https://embed.voomly.com">
     <link rel="preload" href="/fonts/inter/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter/Inter-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 
+    <meta name="theme-color" content="#001F64">
     <title>{title}</title>
     <meta name="description" content={description}>
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -59,14 +61,14 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
     {articleModifiedDate && <meta property="article:modified_time" content={articleModifiedDate}>}
     {articleAuthor && <meta property="article:author" content={articleAuthor}>}
     {articleSection && <meta property="article:section" content={articleSection}>}
-    {articleTags && articleTags.map(tag => <meta property="article:tag" content={tag}>)}
+    {articleTags && [...new Set(articleTags)].map(tag => <meta property="article:tag" content={tag}>)}
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content={resolvedOgImage}>
 
-    {schema && <script type="application/ld+json" set:html={schema} />}
+    {schema && <script type="application/ld+json" set:html={schema.replace(/<\//g, '<\\/')} />}
 
     <style is:global>
         @font-face {
@@ -91,7 +93,7 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             font-family: 'Inter';
             src: url('/fonts/inter/Inter-ExtraBold.woff2') format('woff2');
             font-weight: 800;
-            font-display: swap;
+            font-display: optional;
         }
 
         :root {
@@ -211,24 +213,6 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             }
         });
 
-        const videoContainer = document.getElementById('video-container');
-        const playButton = document.querySelector('.play-button');
-        const videoThumbnail = document.querySelector('.video-thumbnail');
-        const voomlyIframe = document.getElementById('voomly-iframe');
-
-        if (playButton && videoThumbnail && voomlyIframe) {
-            const voomlyUrl = 'https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU&videoRatio=1.777778&type=v&skinColor=rgba(0%2C31%2C100%2C1)';
-
-            function playVideo() {
-                voomlyIframe.src = voomlyUrl;
-                voomlyIframe.style.display = 'block';
-                videoThumbnail.classList.add('hidden');
-                playButton.classList.add('hidden');
-            }
-
-            playButton.addEventListener('click', playVideo);
-            videoThumbnail.addEventListener('click', playVideo);
-        }
     </script>
 </body>
 </html>

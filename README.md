@@ -1,47 +1,48 @@
-# Astro Starter Kit: Basics
+# Value M — valuemdelivery.com
+
+Business growth strategy website for Value M, helping CEOs and founders between $3M and $10M fix business performance and scale without the chaos.
+
+## Tech stack
+
+- [Astro](https://astro.build/) v6 — static site generator
+- MDX — blog post content
+- Inter — self-hosted font (Regular, SemiBold, Bold, ExtraBold)
+- Deployed on Cloudflare Pages
+
+## Development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # production build → dist/
+npm run preview   # preview production build locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```
+src/
+  components/       Header.astro, Footer.astro, CtaFooter.astro
+  content/blog/     Blog posts (.md / .mdx)
+  layouts/          Layout.astro — shared <head>, fonts, global CSS
+  pages/            index.astro, blog/index.astro, blog/[slug].astro, 404.astro
+  utils/            readingTime.ts
+  config.ts         Shared constants: SITE_URL, CALENDLY_URL
+public/
+  fonts/inter/      Self-hosted Inter woff2 files
+  _headers          Cloudflare Pages edge cache rules
+  robots.txt
+docs/
+  post-template.md  Blog post frontmatter template and instructions
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Adding a blog post
 
-## 🧞 Commands
+1. Copy `docs/post-template.md` to `src/content/blog/your-post-slug.md`
+2. Fill in the frontmatter fields (title, description, pubDate, author, tags, category)
+3. Set `draft: true` to preview locally without publishing
+4. Remove `draft: true` (or set to `false`) to publish on the next deploy
 
-All commands are run from the root of the project, from a terminal:
+## Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-# valuemdelivery
+Every push to `main` automatically deploys via Cloudflare Pages. Lighthouse CI runs on each push and reports scores for performance, accessibility, best practices, and SEO.

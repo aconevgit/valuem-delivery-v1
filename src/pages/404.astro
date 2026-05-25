@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Page Not Found | Value M"
+  description="The page you were looking for does not exist or has been moved."
+  canonicalPath="/404"
+>
+  <Header />
+
+  <main>
+    <section class="not-found">
+      <div class="container">
+        <p class="pre-heading">404</p>
+        <h1>Page not found</h1>
+        <p class="not-found-body">The page you were looking for does not exist or has been moved.</p>
+        <a href="/" class="back-home">&larr; Back to home</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .not-found {
+    padding: 80px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-start;
+  }
+  .not-found h1 {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .not-found-body {
+    font-size: 20px;
+    color: var(--color-text-light);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .back-home {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: opacity var(--transition);
+  }
+  .back-home:hover {
+    opacity: 0.7;
+  }
+  @media (min-width: 1024px) {
+    .not-found { padding: 120px 0; }
+    .not-found h1 { font-size: 64px; }
+  }
+</style>

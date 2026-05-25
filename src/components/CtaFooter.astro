@@ -1,5 +1,6 @@
 ---
 import Footer from './Footer.astro';
+import { CALENDLY_URL } from '../config';
 ---
 <style>
     .final-cta {
@@ -42,7 +43,7 @@ import Footer from './Footer.astro';
 <section class="final-cta">
     <div class="container">
         <h2>Ready to fix your delivery?</h2>
-        <a href="https://calendly.com/conev/value-m-client-facing-discovery?month=2026-05" class="cta-button-large">Book your discovery call</a>
+        <a href={CALENDLY_URL} class="cta-button-large" target="_blank" rel="noopener noreferrer">Book your discovery call</a>
     </div>
 </section>
 

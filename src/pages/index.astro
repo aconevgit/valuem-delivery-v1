@@ -38,7 +38,7 @@ import CtaFooter from '../components/CtaFooter.astro';
             <div class="container">
                 <h2>Two minutes &middot; Three problems &middot; One system</h2>
                 <p class="video-subheading">Watch how companies like yours close the delivery gap for good.</p>
-                <div class="video-wrapper" id="video-container">
+                <div class="video-wrapper" id="video-container" role="button" tabindex="0" aria-label="Play Value M client delivery system video">
                     <img
                         src="/video-thumbnail.webp"
                         srcset="/video-thumbnail-960.webp 960w, /video-thumbnail.webp 1920w"
@@ -49,7 +49,7 @@ import CtaFooter from '../components/CtaFooter.astro';
                         height="1080"
                         fetchpriority="high"
                     >
-                    <button class="play-button" aria-label="Play video"></button>
+                    <button class="play-button" aria-label="Play Value M client delivery system video"></button>
                     <iframe id="voomly-iframe" src="" style="display: none; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Value M Client Delivery System Video"></iframe>
                 </div>
             </div>
@@ -278,7 +278,7 @@ import CtaFooter from '../components/CtaFooter.astro';
         font-size: 12px;
         font-weight: 600;
         text-transform: uppercase;
-        color: #001F64;
+        color: var(--color-primary);
         margin-bottom: 16px;
     }
     .testimonial-quote {
@@ -312,3 +312,31 @@ import CtaFooter from '../components/CtaFooter.astro';
         .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
     }
 </style>
+
+<script>
+    const videoWrapper = document.getElementById('video-container') as HTMLElement | null;
+    const playButton = document.querySelector('.play-button');
+    const videoThumbnail = document.querySelector('.video-thumbnail');
+    const voomlyIframe = document.getElementById('voomly-iframe') as HTMLIFrameElement | null;
+
+    if (videoWrapper && playButton && videoThumbnail && voomlyIframe) {
+        const voomlyUrl = 'https://embed.voomly.com/embed/assets/embed.html?videoId=moqpVkfUncEEiFlO1s1i4DePhUldHVdc4Ny8GYBPPzLR1j1sU&videoRatio=1.777778&type=v&skinColor=rgba(0%2C31%2C100%2C1)';
+
+        function playVideo() {
+            voomlyIframe.src = voomlyUrl;
+            voomlyIframe.style.display = 'block';
+            videoThumbnail.classList.add('hidden');
+            playButton.classList.add('hidden');
+            videoWrapper.removeAttribute('tabindex');
+            videoWrapper.removeAttribute('role');
+        }
+
+        videoWrapper.addEventListener('click', playVideo);
+        videoWrapper.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                playVideo();
+            }
+        });
+    }
+</script>
