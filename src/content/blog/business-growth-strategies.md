@@ -10,6 +10,7 @@ tags:
   - "business growth"
   - "business performance"
 slug: "business-growth-strategies-protect-business-performance"
+ogImage: "https://valuemdelivery.com/images/blog/business-growth-strategies-og.jpg"
 draft: false
 ---
 
