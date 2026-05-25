@@ -1,5 +1,15 @@
 # Cloudflare Pages edge cache headers
 
+# Security headers — applied to every response
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' static.cloudflareinsights.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src embed.voomly.com; connect-src 'self' static.cloudflareinsights.com embed.voomly.com; base-uri 'self'; form-action 'self'
+
 # Astro build assets — content-hashed filenames, safe to cache forever
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
