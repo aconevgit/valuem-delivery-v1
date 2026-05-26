@@ -105,6 +105,18 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             font-display: swap;
         }
 
+        /* Metric-matched fallback for Inter ExtraBold — prevents font-swap
+           from changing h1 dimensions so Chrome does not re-record LCP */
+        @font-face {
+            font-family: 'Inter-fallback';
+            src: local('Arial Bold'), local('Arial-BoldMT');
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
+            line-gap-override: 0.00%;
+            size-adjust: 107.40%;
+            font-weight: 800;
+        }
+
         :root {
             --color-primary: #001F64;
             --color-accent: #00ace8;
@@ -126,7 +138,7 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Inter-fallback', sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
             font-size: var(--font-base);
@@ -206,32 +218,36 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
             }, { passive: true });
         }
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Defer section animations until after load so the main thread is
+        // free for the LCP paint — animations are non-critical for first render
+        window.addEventListener('load', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Batch all reads before any writes to avoid forced reflow
+            const sections = Array.from(document.querySelectorAll('section'));
+            const rects = sections.map(section => section.getBoundingClientRect());
+            sections.forEach((section, i) => {
+                if (rects[i].top < window.innerHeight) {
+                    // Already in viewport - start visible, no animation delay
+                    section.classList.add('in-view');
+                } else {
+                    // Below fold - mark for animation and observe
+                    section.classList.add('will-animate');
+                    observer.observe(section);
                 }
             });
-        }, observerOptions);
-
-        // Batch all reads before any writes to avoid forced reflow
-        const sections = Array.from(document.querySelectorAll('section'));
-        const rects = sections.map(section => section.getBoundingClientRect());
-        sections.forEach((section, i) => {
-            if (rects[i].top < window.innerHeight) {
-                // Already in viewport - start visible, no animation delay
-                section.classList.add('in-view');
-            } else {
-                // Below fold - mark for animation and observe
-                section.classList.add('will-animate');
-                observer.observe(section);
-            }
         });
 
     </script>
