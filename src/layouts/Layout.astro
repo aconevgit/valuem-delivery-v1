@@ -71,6 +71,13 @@ const resolvedOgImage = ogImage ?? `${SITE_URL}/og-image.png`;
 
     {schema && <script type="application/ld+json" set:html={schema.replace(/<\//g, '<\\/')} />}
 
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-EmhAZNv3qfsp_bFtz8s2l.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+
     <style is:global>
         @font-face {
             font-family: 'Inter';

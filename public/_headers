@@ -8,7 +8,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Opener-Policy: same-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' static.cloudflareinsights.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src embed.voomly.com; connect-src 'self' static.cloudflareinsights.com embed.voomly.com; base-uri 'self'; form-action 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' static.cloudflareinsights.com plausible.io 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src embed.voomly.com; connect-src 'self' static.cloudflareinsights.com embed.voomly.com plausible.io; base-uri 'self'; form-action 'self'
 
 # Astro build assets — content-hashed filenames, safe to cache forever
 /_astro/*
