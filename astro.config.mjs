@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 /**
  * @typedef {{ type: string, tagName?: string, properties?: Record<string, unknown>, children?: unknown[] }} HastNode
  */
@@ -23,11 +25,16 @@ function rehypeLazyImages() {
 
 export default defineConfig({
   site: 'https://valuemdelivery.com',
+
   build: {
     inlineStylesheets: 'always',
   },
+
   integrations: [mdx(), sitemap()],
+
   markdown: {
     rehypePlugins: [rehypeLazyImages],
   },
+
+  adapter: cloudflare()
 });
